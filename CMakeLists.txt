@@ -31,7 +31,7 @@ set(VITA_VERSION  "01.00")
 
 ## Flags and includes for building
 # Note that we make sure not to overwrite previous flags
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 # Optional. You can specify more param.sfo flags this way.
 set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
@@ -94,6 +94,7 @@ add_executable(${PROJECT_NAME}
   src/init.c
   src/file.c
   src/strnatcmp.c
+  src/debugScreen.c
 )
 
 add_dependencies(${PROJECT_NAME} vitashell_user_stubs)
@@ -103,7 +104,6 @@ add_dependencies(${PROJECT_NAME} patch.skprx)
 
 # Library to link to (drop the -l prefix). This will mostly be stubs.
 target_link_libraries(${PROJECT_NAME}
-	debugnet
   VitaShellUser_stub_weak
   VitaShellKernel2_stub_weak
   taihen_stub
@@ -112,6 +112,7 @@ target_link_libraries(${PROJECT_NAME}
   SceAppMgr_stub
   SceAppUtil_stub
   SceLibKernel_stub
+  SceDisplay_stub
   SceNpDrm_stub
   SceSysmodule_stub
   ScePower_stub

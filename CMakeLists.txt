@@ -25,7 +25,7 @@ include("${VITASDK}/share/vita.cmake" REQUIRED)
 set(VITA_APP_NAME "Copy Icons")
 # Unique ID must be exactly 9 characters. Recommended: XXXXYYYYY where X =
 # unique string of developer and Y = a unique number for this app
-set(VITA_TITLEID  "VSDK00007")
+set(VITA_TITLEID  "CPIC00001")
 # Optional version string to show in LiveArea's more info screen
 set(VITA_VERSION  "01.00")
 

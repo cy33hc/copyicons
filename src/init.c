@@ -31,11 +31,11 @@ extern unsigned char _binary_modules_patch_patch_skprx_size;
 #define DEFAULT_FILE(path, name, replace) { path, (void *)&_binary_resources_##name##_start, (int)&_binary_resources_##name##_size, replace }
 
 static DefaultFile default_files[] = {
-  { "ux0:CopyIcons/module/kernel.skprx",    (void *)&_binary_modules_kernel_kernel_skprx_start,
+  { "ux0:data/CopyIcons/module/kernel.skprx",    (void *)&_binary_modules_kernel_kernel_skprx_start,
                                                (int)&_binary_modules_kernel_kernel_skprx_size, 1 },
-  { "ux0:CopyIcons/module/user.suprx",      (void *)&_binary_modules_user_user_suprx_start,
+  { "ux0:data/CopyIcons/module/user.suprx",      (void *)&_binary_modules_user_user_suprx_start,
                                                (int)&_binary_modules_user_user_suprx_size, 1 },
-  { "ux0:CopyIcons/module/patch.skprx",     (void *)&_binary_modules_patch_patch_skprx_start,
+  { "ux0:data/CopyIcons/module/patch.skprx",     (void *)&_binary_modules_patch_patch_skprx_start,
                                                (int)&_binary_modules_patch_patch_skprx_size, 1 },
 };
 
@@ -44,8 +44,8 @@ SceUID patch_modid = -1, kernel_modid = -1, user_modid = -1;
 
 void installDefaultFiles() {
   // Make CopyIcons folders
-  sceIoMkdir("ux0:CopyIcons", 0777);
-  sceIoMkdir("ux0:CopyIcons/module", 0777);
+  sceIoMkdir("ux0:data/CopyIcons", 0777);
+  sceIoMkdir("ux0:data/CopyIcons/module", 0777);
 
   // Write default files if they don't exist
   int i;
@@ -65,7 +65,7 @@ void initCopyIcons() {
   SceUID search_modid;
   search_modid = _vshKernelSearchModuleByName("VitaShellPatch", search_unk);
   if(search_modid < 0) {
-    patch_modid = taiLoadKernelModule("ux0:CopyIcons/module/patch.skprx", 0, NULL);
+    patch_modid = taiLoadKernelModule("ux0:data/CopyIcons/module/patch.skprx", 0, NULL);
     if (patch_modid >= 0) {
       int res = taiStartKernelModule(patch_modid, 0, NULL, 0, NULL, NULL);
       if (res < 0)
@@ -74,14 +74,14 @@ void initCopyIcons() {
   }
   search_modid = _vshKernelSearchModuleByName("VitaShellKernel2", search_unk);
   if(search_modid < 0) {
-    kernel_modid = taiLoadKernelModule("ux0:CopyIcons/module/kernel.skprx", 0, NULL);
+    kernel_modid = taiLoadKernelModule("ux0:data/CopyIcons/module/kernel.skprx", 0, NULL);
     if (kernel_modid >= 0) {
       int res = taiStartKernelModule(kernel_modid, 0, NULL, 0, NULL, NULL);
       if (res < 0)
         taiStopUnloadKernelModule(kernel_modid, 0, NULL, 0, NULL, NULL);
     }
   }
-  user_modid = sceKernelLoadStartModule("ux0:CopyIcons/module/user.suprx", 0, NULL, 0, NULL, NULL);
+  user_modid = sceKernelLoadStartModule("ux0:data/CopyIcons/module/user.suprx", 0, NULL, 0, NULL, NULL);
 
 }
 

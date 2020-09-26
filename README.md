@@ -1,8 +1,10 @@
 # copyicons
 
-This application is used for bulk copying of icon0.png/pic0.png from the ux0:app/<GAME>/sce_sys for to the ur0:appmeta/<GAME> folder
+This application is used for bulk copying of icon0.png/pic0.png from the ux0:app/GAME_ID/sce_sys to the ur0:appmeta/GAME_ID folder
 
-The psvita can only load 500 bubbles. If you have more then 500 apps/games install. The vita will not create the icon0.png and pic0.png files in the ur0:appmeta folder.
+The psvita can only load 500 bubbles. If you have more then 500 apps/games installed. The vita will not create the icon0.png and pic0.png files in the ur0:appmeta folder for those games that don't have bubbles.
+
+This is used in conjuction with my Launcher app https://github.com/cy33hc/vita-launcher for getting icons to display for the games.
 
 ## Features
 

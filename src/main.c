@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
 			if (pfs_path_exists && ((icon_path_exists && !meta_icon_path_exists) || (pic_path_exists && !meta_pic_path_exists)))
 			{
 				createDirectory(meta_path);
-				if (pfsMount(game_path))
+				if (pfsMount(game_path) == 0)
 				{
 					if (icon_path_exists && !meta_icon_path_exists)
 					{

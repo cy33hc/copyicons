@@ -51,19 +51,21 @@ int main(int argc, char *argv[]) {
 			if (pfs_path_exists && ((icon_path_exists && !meta_icon_path_exists) || (pic_path_exists && !meta_pic_path_exists)))
 			{
 				createDirectory(meta_path);
-				pfsMount(game_path);
-				if (icon_path_exists && !meta_icon_path_exists)
+				if (pfsMount(game_path))
 				{
-					copyFile(icon_path, meta_icon_path, NULL);
-					printf("copied %s to %s\n", icon_path, meta_icon_path);
-				}
+					if (icon_path_exists && !meta_icon_path_exists)
+					{
+						copyFile(icon_path, meta_icon_path, NULL);
+						printf("copied %s to %s\n", icon_path, meta_icon_path);
+					}
 
-				if (pic_path_exists && !meta_pic_path_exists)
-				{
-					copyFile(pic_path, meta_pic_path, NULL);
-					printf("copied %s to %s\n", pic_path, meta_pic_path);
+					if (pic_path_exists && !meta_pic_path_exists)
+					{
+						copyFile(pic_path, meta_pic_path, NULL);
+						printf("copied %s to %s\n", pic_path, meta_pic_path);
+					}
+					pfsUmount();
 				}
-				pfsUmount();
 			}
 			else if ((icon_path_exists && !meta_icon_path_exists) || (pic_path_exists && !meta_pic_path_exists))
 			{
